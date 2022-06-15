@@ -1,0 +1,58 @@
+.flex {
+    display: flex;
+}
+
+.flex.align-center {
+    align-items: center;
+}
+
+.flex.justify-center {
+    justify-content: center;
+}
+
+.flex.space-between {
+    justify-content: space-between;
+}
+
+.flex.space-around {
+    justify-content: space-around;
+}
+
+.flex.space-evenly {
+    justify-content: space-evenly;
+}
+
+.flex.column {
+    flex-direction: column;
+}
+
+.margin-auto {
+    margin: auto;
+}
+
+.grid {
+    display: grid;
+}
+.user-msg {
+    position: fixed;
+    bottom: -100px;
+    right: 10px;
+    background-color: rgb(234, 234, 75);
+    padding: 10px;
+}
+
+.user-msg.open {
+    bottom: 10px;
+    transition: bottom 0.5s;
+    font-size: 20px;
+}
+
+.clean-list {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+.selected {
+    color: green;
+}
