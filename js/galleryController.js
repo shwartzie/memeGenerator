@@ -22,15 +22,19 @@ function renderImgs() {
 function imgClicked() {
     const editor = document.querySelector('.editor-section')
     const gallery = document.querySelector('.gallery-section')
+    const filter = document.querySelector('.line-txt')
+    filter.style.display = 'none'
     gallery.style.display = 'none'
     editor.style.display = 'flex'
 }
 
 function onMainPage() {
     const gallery = document.querySelector('.gallery-section')
-    gallery.style.display = 'grid'
     const editor = document.querySelector('.editor-section')
+    const filter = document.querySelector('.line-txt')
+    gallery.style.display = 'grid'
     editor.style.display = 'none'
+    filter.style.display = 'inline-block'
 }
 
 

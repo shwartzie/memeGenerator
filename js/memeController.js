@@ -4,7 +4,6 @@
 let gCanvas
 let gCtx
 let gCurrTxt
-
 function initMeme() {
     gCanvas = document.getElementById('my-canvas');
     gCtx = gCanvas.getContext('2d');
@@ -20,20 +19,20 @@ function addMouseListeners() {
     // gCanvas.addEventListener('click', onSelectedTxt)
 }
 
-// function renderLineTxtInput() {
-//     let elInputTxt = document.querySelector('.input-txt');
-//     // let lineTxt = getSelectedLineTxt()
-//     elInputTxt.value = lineTxt
-// }
+function renderLineTxtInput() {
+    let elInputTxt = document.querySelector('.input-txt');
+    let lineTxt = getSelectedLineTxt()
+    elInputTxt.value = lineTxt
+}
 
 function renderMeme() {
     const img = getImg()
-    let elImg = new Image();
+    const elImg = new Image();
     drawImg(elImg, img)
     elImg.src = img.url
-    // if (gMeme.lines.length) {
-    //     renderLineTxtInput()
-    // }
+    if (gMeme.lines.length) {
+        renderLineTxtInput()
+    }
 }
 function onStartMeme(imgId) {
     setNewgMeme(imgId)
@@ -48,38 +47,52 @@ function onToggleLine() {
     renderMeme()
 }
 
+
 function drawText(txt) {
     gMeme.lines.forEach(line => {
         line.txt = txt
         gCtx.fillStyle = line.color
+        gCtx.font = `${line.size}px Impact`
         gCtx.fillText(line.txt, 40, 60)
+        gCtx.strokeText(line.txt, 40, 60)
     })
-
-}
-
-function onRenderImg() {
-    renderImg()
 }
 
 
 function drawImg(elImg, img) {
     elImg.onload = () => {
+        console.log(gCanvas.width, gCanvas.height);
         gCtx.drawImage(elImg, 0, 0, gCanvas.width, gCanvas.height);
-        onRenderImg()
     }
 }
 function onAddTxt() {
-    addTxt(gCtx)
+    _addTxt(gCtx)
 }
 
 function onDeleteTxt() {
-    deleteTxt(gCtx)
+    _deleteTxt()
+    renderMeme()
 }
 function onIncreaseFont() {
-    increaseFont()
+    increaseFontSize()
+    renderMeme()
 }
 
 function onDecreaseFont() {
-    decreaseFont() 
+    decreaseFontSize() 
+    renderMeme()
 }
 
+
+function _addTxt(ctx) {
+    gMeme.lines.forEach(line => {
+        ctx.fillStyle = line.color
+        ctx.font = `${line.size}px Impact`
+        ctx.fillText(line.txt, 40, 60)
+        ctx.strokeText(line.txt, 40, 60)
+    })
+}
+
+function _deleteTxt() {
+    drawText('')
+}

@@ -21,10 +21,9 @@
         </section>
     </header>
     <main>
-        <input type="text" class="line-txt" name="filter-txt" onchange="renderText()" placeholder="Enter Text Here..">
+        <input type="text" class="line-txt" name="filter-txt" onchange="filterImgByTxt()" placeholder="Enter Text Here..">
         <section class="gallery-section grid">
             <div class="gallery-imgs">
-
             </div>
         </section>
         <section class="editor-section">
@@ -41,28 +40,27 @@
               </div>
 
             <div class="editor-frame flex column">
-                <input type="text" class="input-txt" name="filter-txt" oninput="setLineTxt(this.value, event)" placeholder="CANT GET FIRED">
+                <input type="text" class="input-txt" name="filter-txt" oninput="setLineTxt(this.value, event)" onclick="onToggleLine()" placeholder="CANT GET FIRED">
                 <div class="functional-btns flex">
-                    <button onclick="onToggleLine()" class="edit-btn change-line"></button>
-                    <button class="up-txt" ><img src="fonts-btns/arrow-up.png"></button>
-                    <button class="down-txt"><img src="fonts-btns/arrow-down.png"></button>
+                    <button class="up-txt" onclick="switchLine()"><img src="fonts-btns/arrow-up.png"></button>
+                    <button class="down-txt" onclick="switchLine()"><img src="fonts-btns/arrow-down.png"></button>
                     <button class="add-btn" onclick="onAddTxt()"><img src="fonts-btns/add.png"></button>
                     <button class="delete-btn" onclick="onDeleteTxt()"><img src="fonts-btns/delete.png"></button>
                 </div>
-    
-                <div class="extra-functional-btns">
-                    <button class="plus-font" onclick="onIncreaseFont()"><img src="fonts-btns/A+.png"></button>
-                    <button class="minus-font" onclick="onDecreaseFont()"><img src="fonts-btns/A-.png"></button>
-                    <button class="align-txt-left"><img src="fonts-btns/align-left.png"></button>
-                    <button class="align-txt-center"><img src="fonts-btns/align-center.png"></button>
-                    <button class="align-txt-right"><img src="fonts-btns/align-right.png"></button>
-                    <select id="select" onchange="setSomething()">
-                        <option class="impact"  value="" >IMPACT</option>
-                    </select>
-                    <button></button>
-                    <label for="fill-color"><img src="fonts-btns/color.png"></label>
-                    <input type="color" id="fill-color" name="fill-color" onchange="changeFontColor()">
-                    
+                <div class="extra-functional-btns-container">
+                    <div class="extra-functional-btns">
+                        <button class="plus-font" onclick="onIncreaseFont()"><img src="fonts-btns/A+.png"></button>
+                        <button class="minus-font" onclick="onDecreaseFont()"><img src="fonts-btns/A-.png"></button>
+                        <button class="align-txt-left"><img src="fonts-btns/align-left.png"></button>
+                        <button class="align-txt-center"><img src="fonts-btns/align-center.png"></button>
+                        <button class="align-txt-right"><img src="fonts-btns/align-right.png"></button>
+                        <select id="select" onchange="setSomething()">
+                            <option class="impact"  value="" >IMPACT</option>
+                        </select>
+                        <button class="save"><img src="/fonts-btns/s.png"></button>
+                        <label for="fill-color"><img src="fonts-btns/color.png"></label>
+                        <input type="color" id="fill-color" name="fill-color" onchange="changeFontColor()">
+                    </div>
                 </div>
             </div>
            
