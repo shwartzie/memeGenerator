@@ -12,8 +12,8 @@ button {
 
 .btn {
     /* Style for "About" */
-    width: 63px;
-    height: 17px;
+    width: 116px;
+    height: 40px;
     color: #ffffff;
     font-family: Poppins;
     font-size: 21px;
@@ -23,8 +23,8 @@ button {
 }
 .btn-logo {
     /* Style for "LOGO" */
-    width: 59px;
-    height: 17px;
+    width: 116px;
+    height: 40px;
     color: #ffffff;
     font-family: Poppins;
     font-size: 22px;
@@ -32,8 +32,8 @@ button {
 }
 .btn-gallery {
     /* Style for "Gallery" */
-    width: 74px;
-    height: 22px;
+    width: 116px;
+    height: 40px;
     color: #ffffff;
     font-family: Poppins;
     font-size: 21px;
@@ -42,8 +42,8 @@ button {
     border: none;
 }
 .btn-about {
-    width: 63px;
-    height: 17px;
+    width: 116px;
+    height: 40px;
     color: #ffffff;
     font-family: Poppins;
     font-size: 21px;
@@ -78,12 +78,21 @@ button {
 .logo {
     text-align: center;
 }
-canvas {
-    display: block;
-    margin: 0 auto;
+.active {
+    width: 116px;
+    height: 40px;
+    box-shadow: 0 3px 6px 1px rgba(0, 0, 0, 0.15);
+    border-radius: 20px;
+    background-color: #fefefe;
+    color: #37b34a;
 }
+
+canvas {
+    margin: 0 auto;
+    border-radius: 30px;
+}
+
 .gallery-section {
-    /* Style for "Rectangle" */
     display: grid;
     margin: auto;
     object-fit: cover;
@@ -106,15 +115,12 @@ canvas {
     box-shadow: 1px 5px 0 #bbc4d1, inset 0 5px 0 #ffffff;
     border-radius: 30px;
     background-color: #ebeef3;
-    /* opacity: 1; */
     width: 476px;
     height: 546px;
 }
 
 .editor-frame {
     display: flex;
-    justify-content: center;
-    align-content: center;
     align-items: center;
     flex-direction: column;
     width: 525px;
@@ -124,27 +130,55 @@ canvas {
     background-color: #ebeef3;
     /* opacity: 0.11; */
 }
+.input-txt {
+    margin-top: 1rem;
+    margin-bottom: 3rem;
+    text-align: center;
+    font-family: Poppins;
+    font-size: 25px;
+    font-weight: 500;
+    text-transform: uppercase;
+    width: 445px;
+    height: 57px;
+    box-shadow: 1px 5px 0 #bbc4d1, inset 0 5px 0 #ffffff;
+    border-radius: 28px;
+    background-color: #ebeef3;
+}
+
+.functional-btns {
+    margin-bottom: 3rem;
+}
 .extra-functional-btns-container {
     background-color: #19a59f;
     width: 445px;
     height: 151px;
     border-radius: 15px;
-
-}
-.extra-functional-btns {
-    background-color: #19a59f;
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: repeat(2, 1fr);;
+    column-gap: 2rem;
+    row-gap: 1rem;
+}
+.extra-functional-btns-container button {
+    background-color: white;
+    border: none;
+    border-radius: 15px;
+}
+/* .my-canvas {
+    object-fit: cover;
+} */
+.extra-functional-btns {
+    display: flex;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(2, 1fr);
     width: 56px;
     height: 51px;
     gap: 10px;
 }
-.plus-font {
-    grid-column: 1;
+.btns-first-row {
+    display: flex;
 }
-.minus-font {
-    grid-column: 2/ 2;
+.btns-second-row {
+    display: flex;
 }
 .select {
     text-align: center;
@@ -159,7 +193,7 @@ canvas {
     background-color: #ebeef3;
 }
 
-.up-txt {
+.line-btn {
     width: 57px;
     height: 53px;
     box-shadow: 1px 5px 0 #048b97, inset 0 5px 0 rgba(255, 255, 255, 0.58);
@@ -172,21 +206,9 @@ canvas {
         #0c98bb 100%
     );
 }
-.down-txt {
-    /* Style for "Rectangle" */
-    width: 57px;
-    height: 53px;
-    box-shadow: 1px 5px 0 #048b97, inset 0 5px 0 rgba(255, 255, 255, 0.58);
-    border-radius: 10px;
-    background-color: #ebeef3;
-    background-image: linear-gradient(
-        -38deg,
-        #66c4dc 0%,
-        #40b1ce 50%,
-        #0c98bb 100%
-    );
+.change-btn {
+    border: rgb(209, 108, 125);
 }
-
 .add-btn {
     /* Style for "Rectangle" */
     width: 58px;

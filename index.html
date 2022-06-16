@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,63 +8,64 @@
     <link rel="stylesheet" href="/css/main.css">
     <title>Main Page</title>
 </head>
+
 <body onload="onInit()">
     <header>
-        <section  class="nav-container">
+        <section class="nav-container">
             <div class="btn-logo">
                 LOGO
             </div>
-            <nav class="flex">
-                <button class="btn nav-main-page" onclick="onMainPage()">Main Page</button>
-                <button class="btn-gallery nav-gallery" onclick="onGallery()">Gallery</button>
-                <button class="btn-about nav-about" onclick="onAbout()">About</button>
+            <nav class="nav-bar flex">
+                <button class="btn nav-main-page active" onclick="onMainPage(), onToggleBtnActive(this)">Main
+                    Page</button>
+                <button class="btn-gallery nav-gallery" onclick="onMainPage(), onToggleBtnActive(this)">Gallery</button>
+                <button class="btn-about nav-about" onclick="onMainPage(), onToggleBtnActive(this)">About</button>
             </nav>
         </section>
     </header>
     <main>
-        <input type="text" class="line-txt" name="filter-txt" onchange="filterImgByTxt()" placeholder="Enter Text Here..">
+        <input type="text" class="line-txt" name="filter-txt" onchange="filterImgByTxt()"
+            placeholder="Enter Text Here..">
         <section class="gallery-section grid">
             <div class="gallery-imgs">
             </div>
         </section>
         <section class="editor-section">
             <div class="canvas-container">
-                
-                <canvas
-                  id="my-canvas"
-                  width: 476px;
-                  height: 546px;
 
-                >
-                
-            </canvas>
-              </div>
+                <canvas id="my-canvas" width: 476px; height: 546px;>
+                </canvas>
+            </div>
 
             <div class="editor-frame flex column">
-                <input type="text" class="input-txt" name="filter-txt" oninput="setLineTxt(this.value, event)" onclick="onToggleLine()" placeholder="CANT GET FIRED">
+                <input type="text" class="input-txt" name="filter-txt" oninput="setLineTxt(this.value, event)"
+                     placeholder="Type Somthing..">
                 <div class="functional-btns flex">
-                    <button class="up-txt" onclick="switchLine()"><img src="fonts-btns/arrow-up.png"></button>
-                    <button class="down-txt" onclick="switchLine()"><img src="fonts-btns/arrow-down.png"></button>
+                    <button class="line-btn change-line" onclick="onToggleLine()"><img src="fonts-btns/arrow-up.png"> <img src="fonts-btns/arrow-down.png"></button>
                     <button class="add-btn" onclick="onAddTxt()"><img src="fonts-btns/add.png"></button>
                     <button class="delete-btn" onclick="onDeleteTxt()"><img src="fonts-btns/delete.png"></button>
                 </div>
-                <div class="extra-functional-btns-container">
-                    <div class="extra-functional-btns">
-                        <button class="plus-font" onclick="onIncreaseFont()"><img src="fonts-btns/A+.png"></button>
-                        <button class="minus-font" onclick="onDecreaseFont()"><img src="fonts-btns/A-.png"></button>
-                        <button class="align-txt-left"><img src="fonts-btns/align-left.png"></button>
-                        <button class="align-txt-center"><img src="fonts-btns/align-center.png"></button>
-                        <button class="align-txt-right"><img src="fonts-btns/align-right.png"></button>
-                        <select id="select" onchange="setSomething()">
-                            <option class="impact"  value="" >IMPACT</option>
-                        </select>
-                        <button class="save"><img src="/fonts-btns/s.png"></button>
-                        <label for="fill-color"><img src="fonts-btns/color.png"></label>
-                        <input type="color" id="fill-color" name="fill-color" onchange="changeFontColor()">
-                    </div>
+                <div class="extra-functional-btns-container ">
+
+                    <button class="plus-font" onclick="onIncreaseFont()"><img src="fonts-btns/A+.png"></button>
+                    <button class="minus-font" onclick="onDecreaseFont()"><img src="fonts-btns/A-.png"></button>
+                    <button class="align-txt-left" onclick="onAlignLeft()"><img
+                            src="fonts-btns/align-left.png"></button>
+                    <button class="align-txt-center" onclick="onAlignCenter()"><img
+                            src="fonts-btns/align-center.png"></button>
+                    <button class="align-txt-right" onclick="onAlignRight()"><img
+                            src="fonts-btns/align-right.png"></button>
+                    <select id="select" onchange="onSetFontStyle(this)">
+                        <option value="Impact">Impact</option>
+                        <option value="Ariel">Ariel</option>
+                        <option value="Monospace">Monospace</option>
+                    </select>
+                    <button class="save"><img src="/fonts-btns/s.png"></button>
+                    <label for="fill-color"><img src="fonts-btns/color.png"></label>
+                    <input type="color" id="fill-color" name="fill-color" onchange="onChangeFontColor(this)">
                 </div>
             </div>
-           
+
         </section>
     </main>
 
@@ -75,6 +77,6 @@
     <script src="/js/services/meme.service.js"></script>
     <script src="/js/galleryController.js"></script>
     <script src="/js/memeController.js"></script>
-    <script src="/js/main.js"></script>
 </body>
+
 </html>

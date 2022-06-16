@@ -4,8 +4,7 @@ function initGallery() {
     renderImgs()
 }
 function renderImgs() {
-    let imgs = getImgs()
-    let strHTMLs = imgs.map(img => {
+    let strHTMLs = gImgs.map(img => {
         return `
         <div class="meme-img" >
             <img onclick="onStartMeme(${img.id})" class="img img-${img.id}" 
@@ -23,6 +22,8 @@ function imgClicked() {
     const editor = document.querySelector('.editor-section')
     const gallery = document.querySelector('.gallery-section')
     const filter = document.querySelector('.line-txt')
+    const mainPageElBtn = document.querySelector('.nav-main-page')
+    mainPageElBtn.classList.toggle('active')
     filter.style.display = 'none'
     gallery.style.display = 'none'
     editor.style.display = 'flex'
