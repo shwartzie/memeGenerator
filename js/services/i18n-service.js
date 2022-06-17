@@ -1,43 +1,28 @@
 var gTrans = {
-    pageTitle: {
-        en: 'Welcome To My Book Shop!',
-        es: '¡Bienvenidos a Mi Librería!',
-        he: 'ברוך הבא לחנות ספרים שלי!'
+    search: {
+        en: 'Search',
+        es: 'Buscar',
+        he: 'חיפוש',
     },
-    subtitle: {
-        en: 'MVC - Model-View-Controller',
-        es: 'MVC - Modelo-Vista-Controlador',
-        he: 'מודל - ויו - קונטרולר',
-    },
-    'title-search': {
-        en: 'Search Via Title',
-        es: 'Buscar por título',
-        he: 'חיפוש לפי כותרת',
-    },
-    'filter-all': {
+    all: {
         en: 'All',
         es: 'Todos',
         he: 'הכל',
     },
-    'filter-active': {
+    active: {
         en: 'Active',
         es: 'Activo',
         he: 'פעיל'
     },
-    'filter-done': {
+    done: {
         en: 'Done',
         es: 'Completo',
         he: 'הושלם',
     },
-    'stat-todo-label': {
+    do: {
         en: 'Todo',
         es: 'Hacer',
         he: 'לעשות',
-    },
-    'stat-active-label': {
-        en: 'Active',
-        es: 'Activo',
-        he: 'פעיל',
     },
     add: {
         en: 'Add',
@@ -47,42 +32,15 @@ var gTrans = {
     sure: {
         en: 'Are you sure?',
         es: 'Estas Seguru?',
-        he: 'בטוח נשמה?',
+        he: 'בטוח?',
     },
-    'add-placeholder': {
+    startTyping: {
         en: 'Start typing...',
-        es: 'Empieza a escribir...',
-        he: 'תכתוב כאן...'
+        he: 'תתחיל לכתוב ...'
     },
     'sort': {
         en: 'Sorting Options:',
-        es: 'Opciones de clasificación:',
         he: ':אופציות מיון'
-    },
-    'sort-min-rate': {
-        en: 'Min Rate',
-        es: 'Tasa Mínima',
-        he: 'דירוג המינימלי'
-    },
-    'sort-max-price': {
-        en: 'Max Price',
-        es: 'Precio máximo',
-        he: 'מחיר מקסימלי'
-    },
-    'starting-price': {
-        en: 'Starting Price:',
-        es: 'Precio inicial:',
-        he: ':מחיר התחלתי'
-    },
-    'desc': {
-        en: 'Decending',
-        es: 'Descendente',
-        he: 'יורד'
-    },
-    'btn-create': {
-        en: 'Create New Book',
-        es: 'Crear nuevo libro',
-        he: 'תיצור ספר חדש'
     },
     id: {
         en: 'ID',
@@ -104,7 +62,7 @@ var gTrans = {
         es: 'Comportamiento',
         he: 'פעולות'
     },
-    'read-book': {
+    read: {
         en: 'Read',
         es: 'Leer',
         he: 'תקרא'
@@ -134,26 +92,35 @@ var gTrans = {
         es: 'Velocidad',
         he: 'דירוג'
     },
-    'new-title': {
-        en: 'Think of a title',
-        es: 'Piensa en un título',
-        he: 'תחשוב על כותרת'
-        
-    },
-    'new-price': {
-        en: 'Think of a price',
-        es: 'Piensa en un precio',
-        he: 'תחשוב על מחיר'
-    },
     submit: {
         en: 'Submit',
         es: 'Enviar',
         he: 'שלח'
     },
-    'curr-page': {
+    currentPage: {
         en: 'Current Page:',
         es: 'Página actual:',
         he: ':עמוד נוכחי'
+    },
+    mainPage: {
+        en: 'Main Page',
+        he: 'עמוד ראשי'
+    },
+    gallery: {
+        en: 'Gallery',
+        he: 'גלריה'
+    },
+    about: {
+        en: 'About',
+        he: 'אודות'
+    },
+    share: {
+        en: 'Share',
+        he: 'שיתוף'
+    },
+    download: {
+        en: 'Download',
+        he: 'הורדה'
     }
 }
 

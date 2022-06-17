@@ -25,43 +25,45 @@ button {
     width: 116px;
     height: 40px;
     color: #ffffff;
-    font-family: Poppins;
     font-size: 21px;
     font-weight: 500;
     background-color: none;
     border: none;
 }
-.btn-logo {
+.change-languages {
     width: 116px;
     height: 40px;
+    font-size: 21px;
+    font-weight: 500;
+    border: none;
+    border-radius: 20px;
+}
+
+.change-languages:hover {
+    box-shadow: 0 3px 6px 1px rgb(0 0 0 / 15%);
+    color: #37b34a;
+}
+.btn-logo {
     color: #ffffff;
-    font-family: Poppins;
-    font-size: 22px;
+    font-family: monospace;
+    font-size: 21px;
     font-weight: bold;
     display: flex;
     font-family: monospace;
     align-items: center;
 }
-.btn-gallery {
+
+.btn-gallery,.btn-nav-main-page,.btn-about,.btn-logo  {
     width: 116px;
     height: 40px;
     color: #ffffff;
-    font-family: Poppins;
+    font-family: monospace;
     font-size: 21px;
     font-weight: 500;
     background-color: none;
     border: none;
 }
-.btn-about {
-    width: 116px;
-    height: 40px;
-    color: #ffffff;
-    font-family: Poppins;
-    font-size: 21px;
-    font-weight: 500;
-    border: none;
-    background-color: none;
-}
+
 
 .btn-about:hover,
 .btn-gallery:hover,
@@ -88,6 +90,9 @@ button {
 }
 .nav-bar button {
     font-family: monospace;
+}
+.nav-bar {
+    gap: 0.5rem;
 }
 .logo {
     text-align: center;

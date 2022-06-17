@@ -20,10 +20,14 @@
                 LOGO
             </div>
             <nav class="nav-bar flex">
-                <button class="btn nav-main-page active" onclick="onMainPage(), onToggleBtnActive(this)">Main
+                <select class="change-languages" onchange="onSetLang(this.value)">
+                    <option value="en">English</option>
+                    <option value="he">עברית</option>
+                </select>
+                <button class="btn nav-main-page active" data-trans="mainPage" onclick="onMainPage(), onToggleBtnActive(this)">Main
                     Page</button>
-                <button class="btn-gallery nav-gallery" onclick="onGallery(), onToggleBtnActive(this)">Gallery</button>
-                <button class="btn-about nav-about" onclick="onAbout(), onToggleBtnActive(this)">About</button>
+                <button class="btn-gallery nav-gallery" data-trans="gallery" onclick="onGallery(), onToggleBtnActive(this)">Gallery</button>
+                <button class="btn-about nav-about" data-trans="about" onclick="onAbout(), onToggleBtnActive(this)">About</button>
             </nav>
             <button class="hamburger-btn" onclick="toggleHamburger()">☰</button>
         </section>
@@ -83,8 +87,8 @@
                 </div>
 
                 <div class="share-download-btns flex">
-                    <button class="share" onclick="onShareMeme()"><i class="fa-solid fa-share-nodes"></i> Share</button>
-                    <a href="#" class="download" onclick="onDownload(this)" download=""><i
+                    <button class="share" data-trans="share" onclick="onShareMeme()"><i class="fa-solid fa-share-nodes"></i> Share</button>
+                    <a href="#" class="download" data-trans="download" onclick="onDownload(this)" download=""><i
                             class="fa-solid fa-download"></i> <span style="margin-left: 1rem;">Download</span></a>
                 </div>
                 <div class="share-container"></div>
