@@ -5,11 +5,15 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/utils.css">
     <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/mq/mobile.css">
+    <link rel="stylesheet" href="/css/mq/desktop.css">
     <title>Main Page</title>
 </head>
 
 <body onload="onInit()">
+    <div class="main-screen" onclick="onClickScreen()"></div>
     <header>
         <section class="nav-container">
             <div class="btn-logo">
@@ -18,30 +22,42 @@
             <nav class="nav-bar flex">
                 <button class="btn nav-main-page active" onclick="onMainPage(), onToggleBtnActive(this)">Main
                     Page</button>
-                <button class="btn-gallery nav-gallery" onclick="onMainPage(), onToggleBtnActive(this)">Gallery</button>
-                <button class="btn-about nav-about" onclick="onMainPage(), onToggleBtnActive(this)">About</button>
+                <button class="btn-gallery nav-gallery" onclick="onGallery(), onToggleBtnActive(this)">Gallery</button>
+                <button class="btn-about nav-about" onclick="onAbout(), onToggleBtnActive(this)">About</button>
             </nav>
+            <button class="hamburger-btn" onclick="toggleHamburger()">☰</button>
         </section>
     </header>
     <main>
-        <input type="text" class="line-txt" name="filter-txt" onchange="filterImgByTxt()"
-            placeholder="Enter Text Here..">
-        <section class="gallery-section grid">
-            <div class="gallery-imgs">
+        
+        <div class="gallery-container">
+            <div class="no-imgs-found">no images have been saved yet, why not go ahead and try aye? 😉</div>
+            <label for="line-txt" class="magnifying-glass"></label>
+            <input type="text" id="line-txt" class="line-txt" name="filter-txt" onchange="onFilterImgByTxt(this.value)"
+                placeholder="Search">
+                <div class="nothing-found"> Nothing Found Try Writing Something Else 😓</div>
+            <section class="gallery-section grid">
+                <div class="gallery-imgs">
+                </div>
+            </section>
+            <div class="saved-memes-container grid">
+
             </div>
-        </section>
+        </div>
         <section class="editor-section">
             <div class="canvas-container">
 
-                <canvas id="my-canvas" width: 476px; height: 546px;>
+                <canvas id="my-canvas" onclick="onMarkLine(this,event)" width: 476px; height: 546px;>
                 </canvas>
             </div>
 
             <div class="editor-frame flex column">
                 <input type="text" class="input-txt" name="filter-txt" oninput="setLineTxt(this.value, event)"
-                     placeholder="Type Somthing..">
+                    placeholder="Type Somthing..">
                 <div class="functional-btns flex">
-                    <button class="line-btn change-line" onclick="onToggleLine()"><img src="fonts-btns/arrow-up.png"> <img src="fonts-btns/arrow-down.png"></button>
+                    <button class="line-btn change-line" onclick="onToggleLine()"><img class="arrow-up"
+                            src="fonts-btns/arrow-up.png">
+                        <img class="arrow-down" src="fonts-btns/arrow-up.png"></button>
                     <button class="add-btn" onclick="onAddTxt()"><img src="fonts-btns/add.png"></button>
                     <button class="delete-btn" onclick="onDeleteTxt()"><img src="fonts-btns/delete.png"></button>
                 </div>
@@ -55,20 +71,30 @@
                             src="fonts-btns/align-center.png"></button>
                     <button class="align-txt-right" onclick="onAlignRight()"><img
                             src="fonts-btns/align-right.png"></button>
-                    <select id="select" onchange="onSetFontStyle(this)">
+                    <select id="select" class="font-styles-selector" onchange="onSetFontStyle(this)">
                         <option value="Impact">Impact</option>
-                        <option value="Ariel">Ariel</option>
+                        <option value="Arial">Arial</option>
                         <option value="Monospace">Monospace</option>
                     </select>
-                    <button class="save"><img src="/fonts-btns/s.png"></button>
-                    <label for="fill-color"><img src="fonts-btns/color.png"></label>
+                    <button class="save" onclick="onSaveMeme()"><img src="/fonts-btns/s.png"></button>
+                    <label for="fill-color" class="fill-color-label">
+                    </label>
                     <input type="color" id="fill-color" name="fill-color" onchange="onChangeFontColor(this)">
                 </div>
+
+                <div class="share-download-btns flex">
+                    <button class="share" onclick="onShareMeme()"><i class="fa-solid fa-share-nodes"></i> Share</button>
+                    <a href="#" class="download" onclick="onDownload(this)" download=""><i
+                            class="fa-solid fa-download"></i> <span style="margin-left: 1rem;">Download</span></a>
+                </div>
+                <div class="share-container"></div>
             </div>
+
+            
 
         </section>
     </main>
-
+    <script src="https://kit.fontawesome.com/1ca4234bc8.js" crossorigin="anonymous"></script>
     <script src="/js/services/i18n-service.js"></script>
     <script src="/js/services/util.service.js"></script>
     <script src="/js/services/storage.service.js"></script>

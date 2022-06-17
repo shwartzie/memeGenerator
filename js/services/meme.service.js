@@ -9,80 +9,81 @@ const gKeywordSearchCountMap = {
 const gImgs = [
     {
         id: 1, url: 'meme-imgs/1.jpg',
-        keywords: ['funny', 'cat']
+        keywords: ['president', 'funny']
     },
     {
         id: 2, url: 'meme-imgs/2.jpg',
-        keywords: ['funny', 'cat']
+        keywords: ['cute', 'dog', 'kiss']
     },
     {
         id: 3, url: 'meme-imgs/3.jpg',
-        keywords: ['funny', 'cat']
+        keywords: ['baby', 'dog', 'baby']
     },
     {
         id: 4, url: 'meme-imgs/4.jpg',
-        keywords: ['funny', 'cat']
+        keywords: ['sleep', 'cat']
     },
     {
         id: 5, url: 'meme-imgs/5.jpg',
-        keywords: ['funny', 'cat']
+        keywords: ['baby', 'funny']
     },
     {
         id: 6, url: 'meme-imgs/6.jpg',
-        keywords: ['funny', 'cat']
+        keywords: ['think', 'explain']
     },
     {
         id: 7, url: 'meme-imgs/7.jpg',
-        keywords: ['funny', 'cat']
+        keywords: ['baby', 'funny', 'suprised', 'shocked']
     },
     {
         id: 8, url: 'meme-imgs/8.jpg',
-        keywords: ['funny', 'cat']
+        keywords: ['dont you say', 'no way', 'smile']
     },
     {
         id: 9, url: 'meme-imgs/9.jpg',
-        keywords: ['funny', 'cat']
+        keywords: ['baby', 'sneaky']
     },
     {
         id: 10, url: 'meme-imgs/10.jpg',
-        keywords: ['funny', 'cat']
+        keywords: ['laugh', 'president']
     },
     {
         id: 11, url: 'meme-imgs/11.jpg',
-        keywords: ['funny', 'cat']
+        keywords: ['hug', 'close']
     },
     {
         id: 12, url: 'meme-imgs/12.jpg',
-        keywords: ['funny', 'cat']
+        keywords: ['you', 'point']
     },
     {
         id: 13, url: 'meme-imgs/13.jpg',
-        keywords: ['funny', 'cat']
+        keywords: ['glass', 'wine', 'point']
     },
     {
         id: 14, url: 'meme-imgs/14.jpg',
-        keywords: ['funny', 'cat']
+        keywords: ['matrix', 'glasses', 'cool']
     },
     {
         id: 15, url: 'meme-imgs/15.jpg',
-        keywords: ['funny', 'cat']
+        keywords: ['excatly', 'now', 'point']
     },
     {
         id: 16, url: 'meme-imgs/16.jpg',
-        keywords: ['funny', 'cat']
+        keywords: ['facepalm', 'no way', 'laugh']
     },
     {
         id: 17, url: 'meme-imgs/17.jpg',
-        keywords: ['funny', 'cat']
+        keywords: ['dueses', 'president', 'putin']
     },
     {
         id: 18, url: 'meme-imgs/18.jpg',
-        keywords: ['funny', 'cat']
+        keywords: ['buzz', 'toy story', 'look', 'sad', 'worry']
     },
-    
+
 ]
 let gMeme = createMeme()
 
+const imgsStorage = []
 
 function createMeme(imgId = 1) {
     let meme = {
@@ -94,6 +95,7 @@ function createMeme(imgId = 1) {
     }
     return meme
 }
+
 function createLine() {
     let line = {
         txt: 'asdfasdfasdfas',
@@ -101,13 +103,10 @@ function createLine() {
         align: 'center',
         color: 'white',
         strokeColor: 'black',
-        pos: {x: 50, y:getRandomIntInclusive(50, 300)},
+        pos: { x: 220, y: getRandomIntInclusive(50, 300) },
         font: 'Impact'
     }
     return line
-}
-const gFilterBy = {
-    txt: ''
 }
 
 function getImg() {
@@ -115,6 +114,7 @@ function getImg() {
     let img = getImgById(imgId)
     return img
 }
+
 function getImgById(imgId) {
     let img = gImgs.find((Img) => {
         return imgId === Img.id
@@ -125,20 +125,24 @@ function getImgById(imgId) {
 function getMeme() {
     return gMeme
 }
+
 function setNewgMeme(imgId) {
     gMeme = createMeme(imgId)
 }
 
 function setLineTxt(txt) {
     const line = gMeme.lines[gMeme.selectedLineIdx]
-    _renderMeme()
     let fontSize = `${line.size}px Impact`
     line.txt = txt
     drawText(txt, line.color, line.strokeColor, fontSize, line.pos.x, line.pos.y)
+    _renderMeme()
 }
 
 function toggleLine() {
-    gMeme.selectedLineIdx + 1 > gMeme.lines.length ? (gMeme.selectedLineIdx = 0) : (gMeme.selectedLineIdx += 1)
+    let linesLen = gMeme.lines.length
+    let selectedLineIdx = gMeme.selectedLineIdx
+    gMeme.selectedLineIdx = (selectedLineIdx + 1 === linesLen) ? 0 : selectedLineIdx + 1
+    drawLines()
 }
 
 function increaseFontSize() {
@@ -150,6 +154,7 @@ function decreaseFontSize() {
     const line = getSelectedLine()
     line.size--
 }
+
 function getSelectedLineTxt() {
     let selectedLineIdx = gMeme.selectedLineIdx
     let lineTxt = gMeme.lines[selectedLineIdx].txt
@@ -169,6 +174,7 @@ function selectClickedLine({ offsetX, offsetY }) {
         }
     })
 }
+
 function addTxt() {
     let lines = gMeme.lines
     let lineLeng = lines.length
@@ -185,27 +191,26 @@ function addTxt() {
 
     line['pos'] = { x: gCanvas.width / 2, y: linePosY }
     lines.push(line)
+    drawLines()
     changeToNewLine()
 }
 
 function alignTxtLeft() {
-    gMeme.lines[gMeme.selectedLineIdx].x = 10
-    gMeme.lines[gMeme.selectedLineIdx].align = 'left'
+    //mirrored canvas dont jugde me 😭
+    gMeme.lines[gMeme.selectedLineIdx].align = 'right'
 }
 
 function alignTxtCenter() {
-    gMeme.lines[gMeme.selectedLineIdx].x = gCanvas.width / 2
     gMeme.lines[gMeme.selectedLineIdx].align = 'center'
 }
 
 function alignTxtRight() {
-    gMeme.lines[gMeme.selectedLineIdx].x = gCanvas.width - 10
-    gMeme.lines[gMeme.selectedLineIdx].align = 'right'
+    gMeme.lines[gMeme.selectedLineIdx].align = 'left'
 }
 
 function changeToNewLine() {
-    let Linesleng = gMeme.lines.length
-    gMeme.selectedLineIdx = Linesleng - 1
+    let linesLeng = gMeme.lines.length
+    gMeme.selectedLineIdx = linesLeng - 1
 }
 
 function setFontStyle(font) {
@@ -213,4 +218,71 @@ function setFontStyle(font) {
     updateFont(gMeme.selectedFont)
 }
 
+function filterImgByTxt(txt) {
+    return _getImgsByFilter(txt)
+}
+
+function _getImgsByFilter(txt) {
+    const imgs = gImgs.filter((img) => {
+            return img.keywords.includes(txt)
+    })
+    if (!imgs.length) {
+        return null
+    }
+    return imgs
+}
+
+function saveMeme() {
+    const img = getImg()
+    imgsStorage.unshift(img)
+    _saveMemeToStorage()
+}
+
+function _saveMemeToStorage() {
+    saveToStorage(MEME_KEY, imgsStorage)
+}
+
+function loadMemeFromStorage() {
+    return loadFromStorage(MEME_KEY)
+}
+
+function downloadMeme(elLink) {
+    const elDownload = document.querySelector('.download')
+    const img = getImg()
+    console.log(img, elLink);
+    elDownload.download = `${img.url}`
+    const imgContent = gCanvas.toDataURL(`${img.url}`)
+    elLink.href = imgContent
+}
+
+function shareMeme() {
+    const img = getImg()
+    const imgDataUrl = gCanvas.toDataURL(`${img.url}`)
+    function onSuccess(uploadedImgUrl) {
+        const encodedUploadedImgUrl = encodeURIComponent(uploadedImgUrl)
+        console.log(encodedUploadedImgUrl);
+        document.querySelector('.share-container').innerHTML = `
+        <a class="share" href="https://www.facebook.com/sharer/sharer.php?u=${encodedUploadedImgUrl}&t=${encodedUploadedImgUrl}" title="Share on Facebook" target="_blank" 
+        onclick="window.location.href('https://www.facebook.com/sharer/sharer.php?u=${uploadedImgUrl}&t=${uploadedImgUrl}'); return false;">
+        </a>`
+    }
+    doUploadImg(imgDataUrl, onSuccess);
+}
+
+function doUploadImg(imgDataUrl, onSuccess) {
+    const formData = new FormData();
+    formData.append('img', imgDataUrl)
+    fetch('//ca-upload.com/here/upload.php', {
+        method: 'POST',
+        body: formData
+    })
+        .then(res => res.text())
+        .then((url) => {
+            console.log('Got back live url:', url)
+            onSuccess(url)
+        })
+        .catch((err) => {
+            console.error(err)
+        })
+}
 

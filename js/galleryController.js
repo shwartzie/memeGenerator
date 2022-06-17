@@ -1,45 +1,38 @@
 'use strict'
 
-function initGallery() {
-    renderImgs()
-}
-function renderImgs() {
-    let strHTMLs = gImgs.map(img => {
-        return `
-        <div class="meme-img" >
-            <img onclick="onStartMeme(${img.id})" class="img img-${img.id}" 
-            src="meme-imgs/${img.id}.jpg" alt="">
-        </div>
-        `
-    })
-    let elGallerySection = document.querySelector('.gallery-section');
-    elGallerySection.innerHTML = strHTMLs.join('')
-}
-
-
-
-function imgClicked() {
-    const editor = document.querySelector('.editor-section')
-    const gallery = document.querySelector('.gallery-section')
-    const filter = document.querySelector('.line-txt')
-    const mainPageElBtn = document.querySelector('.nav-main-page')
-    mainPageElBtn.classList.toggle('active')
-    filter.style.display = 'none'
-    gallery.style.display = 'none'
-    editor.style.display = 'flex'
-}
-
-function onMainPage() {
-    const gallery = document.querySelector('.gallery-section')
-    const editor = document.querySelector('.editor-section')
-    const filter = document.querySelector('.line-txt')
-    gallery.style.display = 'grid'
-    editor.style.display = 'none'
-    filter.style.display = 'inline-block'
-}
 
 
 //saved gallery
 function onGallery() {
+    resetPage()
 
+    const galleryPage = document.querySelector('.saved-memes-container')
+    galleryPage.style.display = 'grid'
+
+    renderSavedMemes()
+}
+
+function renderSavedMemes() {
+    const imgs = getSavedMemes()
+    if(!imgs) {
+        document.querySelector('.no-imgs-found').hidden = false
+    } else {
+        document.querySelector('.no-imgs-found').hidden = true
+        renderImgs(imgs, 'saved-memes-container')
+    }
+}
+
+function resetPage() {
+    //resets
+    const mainPageElBtn = document.querySelector('.nav-main-page')
+    const mainPage = document.querySelector('.gallery-section')
+    const container = document.querySelector('.gallery-container')
+    const editor = document.querySelector('.editor-section')
+    const searchBar = document.querySelector('.line-txt')
+    document.querySelector('.no-imgs-found').hidden = true
+    container.style.display = 'flex'
+    mainPageElBtn.classList.remove('active')
+    mainPage.style.display = 'none'
+    searchBar.style.display = 'none'
+    editor.style.display = 'none'
 }
