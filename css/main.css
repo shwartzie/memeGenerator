@@ -333,7 +333,7 @@ canvas {
 
 .fill-color-label {
     /* content: url('/fonts-btns/color.png'); */
-    background-image: url("/fonts-btns/color.png");
+    background-image: url("fonts-btns/color.png");
     background-repeat: no-repeat;
     background-position: center;
     background-color: white;
