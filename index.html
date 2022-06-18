@@ -5,10 +5,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/utils.css">
-    <link rel="stylesheet" href="/css/main.css">
-    <link rel="stylesheet" href="/css/mq/mobile.css">
-    <link rel="stylesheet" href="/css/mq/desktop.css">
+    <link rel="stylesheet" href="css/utils.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/mq/mobile.css">
+    <link rel="stylesheet" href="css/mq/desktop.css">
     <title>Main Page</title>
 </head>
 
@@ -24,22 +24,45 @@
                     <option value="en">English</option>
                     <option value="he">עברית</option>
                 </select>
-                <button class="btn nav-main-page active" data-trans="mainPage" onclick="onMainPage(), onToggleBtnActive(this)">Main
+                <button class="btn nav-main-page active" data-trans="mainPage"
+                    onclick="onMainPage(); onToggleBtnActive(this)">Main
                     Page</button>
-                <button class="btn-gallery nav-gallery" data-trans="gallery" onclick="onGallery(), onToggleBtnActive(this)">Gallery</button>
-                <button class="btn-about nav-about" data-trans="about" onclick="onAbout(), onToggleBtnActive(this)">About</button>
+                <button class="btn-gallery nav-gallery" data-trans="gallery"
+                    onclick="onGallery(); onToggleBtnActive(this)">Gallery</button>
+                <button class="btn-about nav-about" data-trans="about"
+                    onclick="onAbout(); onToggleBtnActive(this)">About</button>
             </nav>
             <button class="hamburger-btn" onclick="toggleHamburger()">☰</button>
         </section>
     </header>
     <main>
-        
+        <div class="about" hidden>
+            <h1 style="color:rgb(101, 222, 182)">Thank you for playing my game hope you enjoyed!</h1>
+            <h2 style="color:rgb(101, 222, 182)">You can contact me via:
+                <a href="https://www.instagram.com/shwarzman/" class="instagram"><i
+                        class="fa-brands fa-instagram"></i></a>
+                <a href="https://www.linkedin.com/in/roni-shwarzman-17b51a239/" class="linkedin"><i
+                        class="fa-brands fa-linkedin"></i></a>
+            </h2>
+            <h3 style="color:rgb(101, 222, 182)">Created By &copy; Roni Shwarzman</h3>
+        </div>
         <div class="gallery-container">
+
             <div class="no-imgs-found">no images have been saved yet, why not go ahead and try aye? 😉</div>
-            <label for="line-txt" class="magnifying-glass"></label>
-            <input type="text" id="line-txt" class="line-txt" name="filter-txt" onchange="onFilterImgByTxt(this.value)"
-                placeholder="Search">
-                <div class="nothing-found"> Nothing Found Try Writing Something Else 😓</div>
+            <div class="search-functions">
+                <label for="line-txt"  class="magnifying-glass"></label>
+                <input type="text" data-trans="search" id="line-txt" class="line-txt" name="filter-txt"
+                    onchange="onFilterImgByTxt(this.value)" placeholder="Search">
+
+                <div class="search-by-keyword">
+                    <ul class="flex" style="gap: 1rem;">
+
+                    </ul>
+                </div>
+
+                <div class="more"></div>
+            </div>
+            <div class="nothing-found"> Nothing Found Try Writing Something Else 😓</div>
             <section class="gallery-section grid">
                 <div class="gallery-imgs">
                 </div>
@@ -50,8 +73,7 @@
         </div>
         <section class="editor-section">
             <div class="canvas-container">
-
-                <canvas id="my-canvas" onclick="onMarkLine(this,event)" width: 476px; height: 546px;>
+                <canvas id="my-canvas" width: 476px; height: 546px;>
                 </canvas>
             </div>
 
@@ -85,28 +107,31 @@
                     </label>
                     <input type="color" id="fill-color" name="fill-color" onchange="onChangeFontColor(this)">
                 </div>
+                <!-- <div class="stickers">
 
+                </div> -->
                 <div class="share-download-btns flex">
-                    <button class="share" data-trans="share" onclick="onShareMeme()"><i class="fa-solid fa-share-nodes"></i> Share</button>
+                    <button class="share" data-trans="share" onclick="onShareMeme()"><i
+                            class="fa-solid fa-share-nodes"></i> Share</button>
                     <a href="#" class="download" data-trans="download" onclick="onDownload(this)" download=""><i
                             class="fa-solid fa-download"></i> <span style="margin-left: 1rem;">Download</span></a>
                 </div>
                 <div class="share-container"></div>
             </div>
 
-            
+
 
         </section>
     </main>
     <script src="https://kit.fontawesome.com/1ca4234bc8.js" crossorigin="anonymous"></script>
-    <script src="/js/services/i18n-service.js"></script>
-    <script src="/js/services/util.service.js"></script>
-    <script src="/js/services/storage.service.js"></script>
-    <script src="/js/services/memesSentences.js"></script>
-    <script src="/js/services/gallery.service.js"></script>
-    <script src="/js/services/meme.service.js"></script>
-    <script src="/js/galleryController.js"></script>
-    <script src="/js/memeController.js"></script>
+    <script src="js/services/i18n-service.js"></script>
+    <script src="js/services/util.service.js"></script>
+    <script src="js/services/storage.service.js"></script>
+    <script src="js/services/gallery.service.js"></script>
+    <script src="js/services/meme.service.js"></script>
+    <script src="js/about.js"></script>
+    <script src="js/galleryController.js"></script>
+    <script src="js/memeController.js"></script>
 </body>
 
 </html>

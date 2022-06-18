@@ -1,9 +1,34 @@
 'use strict'
 
+
 const gKeywordSearchCountMap = {
-    'funny': 12,
-    'cat': 16,
-    'baby': 2
+    'funny': 14,
+    'cat': 14,
+    'baby': 14,
+    'president': 14,
+    'cute': 14,
+    // 'dog': 14,
+    // 'kiss': 14,
+    // 'sleep': 14,
+    // 'think': 14,
+    // 'explain': 14,
+    // 'suprised': 14,
+    // 'shocked': 14,
+    // 'smile': 14,
+    // 'sneaky': 14,
+    // 'laugh': 14,
+    // 'hug': 14,
+    // 'close': 14,
+    // 'you': 14,
+    // 'point': 14,
+    // 'glass': 14,
+    // 'wine': 14,
+    // 'matrix':14,
+    // 'cool': 14,
+    // 'glasses': 14,
+    // 'buzz':14,
+    // 'sad': 14
+
 }
 
 const gImgs = [
@@ -17,7 +42,7 @@ const gImgs = [
     },
     {
         id: 3, url: 'meme-imgs/3.jpg',
-        keywords: ['baby', 'dog', 'baby']
+        keywords: ['baby', 'dog']
     },
     {
         id: 4, url: 'meme-imgs/4.jpg',
@@ -219,6 +244,9 @@ function setFontStyle(font) {
 }
 
 function filterImgByTxt(txt) {
+    if(!txt) {
+        return null
+    }
     return _getImgsByFilter(txt)
 }
 
@@ -257,14 +285,16 @@ function downloadMeme(elLink) {
 
 function shareMeme() {
     const img = getImg()
-    const imgDataUrl = gCanvas.toDataURL(`${img.url}`)
+    const imgDataUrl = gCanvas.toDataURL(`image/jpeg`)
     function onSuccess(uploadedImgUrl) {
         const encodedUploadedImgUrl = encodeURIComponent(uploadedImgUrl)
-        console.log(encodedUploadedImgUrl);
-        document.querySelector('.share-container').innerHTML = `
-        <a class="share" href="https://www.facebook.com/sharer/sharer.php?u=${encodedUploadedImgUrl}&t=${encodedUploadedImgUrl}" title="Share on Facebook" target="_blank" 
-        onclick="window.location.href('https://www.facebook.com/sharer/sharer.php?u=${uploadedImgUrl}&t=${uploadedImgUrl}'); return false;">
-        </a>`
+        window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodedUploadedImgUrl}&t=${encodedUploadedImgUrl}`);
+        // const encodedUploadedImgUrl = encodeURIComponent(uploadedImgUrl)
+        // console.log(encodedUploadedImgUrl);
+        // document.querySelector('.share-container').innerHTML = `
+        // <a class="share" href="https://www.facebook.com/sharer/sharer.php?u=${encodedUploadedImgUrl}&t=${encodedUploadedImgUrl}" title="Share on Facebook" target="_blank" 
+        // onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=${uploadedImgUrl}&t=${uploadedImgUrl}'); return false;">
+        // </a>`
     }
     doUploadImg(imgDataUrl, onSuccess);
 }
@@ -286,3 +316,20 @@ function doUploadImg(imgDataUrl, onSuccess) {
         })
 }
 
+
+function searchByKeywords() {
+    const keywords = []
+    for(let key in gKeywordSearchCountMap) {
+        if(!keywords.includes(key)) {
+            keywords.push(key)
+        }
+    }
+    return keywords
+}
+
+function countWords(elBtn) {
+    gKeywordSearchCountMap[`${elBtn.innerText}`] += 1
+    const val = gKeywordSearchCountMap[`${elBtn.innerText}`]
+    elBtn.style.fontSize = `${val}px`
+    onFilterImgByTxt(elBtn.innerText)
+}

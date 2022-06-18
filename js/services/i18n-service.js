@@ -121,7 +121,28 @@ var gTrans = {
     download: {
         en: 'Download',
         he: 'הורדה'
+    },
+    funny: {
+        en: 'funny',
+        he: 'מצחיק'
+    },
+    cute: {
+        en: 'cute',
+        he: 'חמוד'
+    },
+    president: {
+        en: 'president',
+        he: 'נשיא'
+    },
+    baby: {
+        en: 'baby',
+        he: 'תינוק'
+    },
+    cat: {
+        en: 'cat',
+        he: 'חתול'
     }
+
 }
 
 var gCurrLang = 'en';

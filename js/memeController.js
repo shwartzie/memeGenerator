@@ -4,11 +4,15 @@
 let gCanvas
 let gCtx
 let gCurrTxt
+const gRefresh = {
+    touchStart: 0,
+    touchEnd: 0,
+}
 const MEME_KEY = 'memeDB'
 
 function onInit() {
-    const imgs = loadMemeFromStorage(MEME_KEY)
-    renderImgs(imgs)
+    
+    onSearchByKeywords()
     _initMeme()
     document.querySelector('.no-imgs-found').hidden = true
 }
@@ -20,18 +24,26 @@ function _initMeme() {
 }
 
 function onMainPage() {
-    const mainPage = document.querySelector('.gallery-container')
-    const editor = document.querySelector('.editor-section')
-    const filter = document.querySelector('.line-txt')
-    const gallery = document.querySelector('.nav-gallery')
-    const imgs = document.querySelector('.gallery-section')
+    const savedMemes = document.querySelector('.saved-memes-container')
+    const elMainPageContainer = document.querySelector('.gallery-container')
+    const elEditor = document.querySelector('.editor-section')
+    const elSearchBar = document.querySelector('.line-txt')
+    const elNavBar = document.querySelector('.nav-gallery')
+    const elMainPage = document.querySelector('.gallery-section')
+    const elSearchByKeys = document.querySelector('.search-by-keyword')
+    document.querySelector('.about').hidden = true
+    const elAbout = document.querySelector('.btn-about')
+    elAbout.classList.remove('active')
     document.querySelector('.no-imgs-found').hidden = true
-    gallery.classList.remove('active')
-    mainPage.style.display = 'flex'
-    editor.style.display = 'none'
-    filter.style.display = 'inline-block'
-    imgs.style.display = 'grid'
+    elNavBar.classList.remove('active')
+    savedMemes.style.display = 'none'
+    elSearchByKeys.style.display = 'block'
+    elMainPageContainer.style.display = 'flex'
+    elEditor.style.display = 'none'
+    elSearchBar.style.display = 'inline-block'
+    elMainPage.style.display = 'grid'
     renderImgs()
+    
 }
 
 function imgClicked() {
@@ -114,7 +126,6 @@ function drawLines() {
 function drawText(txt, lineColor, lineStrokeColor, fontStyle, align, x, y) {
     //fix txt
     gCtx.textAlign = align
-    console.log(align, gCtx);
     gCtx.lineWidth = '2'
     gCtx.strokeStyle = lineStrokeColor
     gCtx.fillStyle = lineColor
@@ -248,19 +259,17 @@ function onShareMeme() {
 
 function onFilterImgByTxt(txt) {
     const imgs = filterImgByTxt(txt)
-    console.log(imgs, txt);
     const errMsg = document.querySelector('.nothing-found')
     const gallery = document.querySelector('.gallery-section')
     if (!imgs) {
-        console.log('no imgs');
         errMsg.style.display = 'block'
         gallery.style.display = 'none'
     }
     if (!txt) {
-        console.log('no txt');
         errMsg.style.display = 'none'
         gallery.style.display = 'grid'
     }
+    
     renderImgs(imgs)
 }
 
@@ -274,4 +283,15 @@ function onSetLang(lang) {
 }
 
 
+function onSearchByKeywords() {
+    const keywords = searchByKeywords()
+    renderKeyWords(keywords)
+}
 
+function renderKeyWords(words) {
+    let strHTMLs = words.map((word) => {
+        return `<li><button data-trans="${word}" class="word" onclick="countWords(this)">${word}</button></li>`
+    })
+    const elSearchKeywords = document.querySelector('.search-by-keyword ul')
+    elSearchKeywords.innerHTML = strHTMLs.join('')
+}
