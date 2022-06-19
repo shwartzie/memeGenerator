@@ -1,13 +1,13 @@
-@import '/css/components/saved-memes.css';
-@import '/css/components/nav-bar.css';
-@import '/css/components/main-page-gallery.css';
-@import '/css/components/search-bar.css';
-@import '/css/components/editor.css';
-@import '/css/components/hidden-divs.css';
-@import '/css/mq/mobile.css';
-@import '/css/mq/desktop.css';
-@import '/css/helpers/utils.css';
-@import '/css/helpers/base.css';
+@import '../css/components/saved-memes.css';
+@import '../css/components/nav-bar.css';
+@import '../css/components/main-page-gallery.css';
+@import '../css/components/search-bar.css';
+@import '../css/components/editor.css';
+@import '../css/components/hidden-divs.css';
+@import '../css/mq/mobile.css';
+@import '../css/mq/desktop.css';
+@import '../css/helpers/utils.css';
+@import '../css/helpers/base.css';
 
 
 

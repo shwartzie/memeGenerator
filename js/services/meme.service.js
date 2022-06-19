@@ -218,7 +218,6 @@ function addTxt() {
     let lines = meme.lines
     let lineLeng = lines.length
     let line
-    console.log(lines);
     if (lineLeng === 1) {
         line = createLine(450)
     } else {

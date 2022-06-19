@@ -272,7 +272,6 @@ function onSearchByKeywords() {
 }
 
 function renderKeyWords(words) {
-    console.log(words);
     let strHTMLs = words.map((word) => {
         if (word === 'all') {
             return `<li><button data-trans="${word}" class="word" onclick="renderImgs()">${word}</button></li>`
@@ -346,7 +345,6 @@ function checkViewPort() {
 
 function resizeCanvasOnMobile () {
     const elContainer = document.querySelector('#my-canvas')
-    console.log(elContainer);
     const size = calculateAspectRatioFit(
         250,
         250,
