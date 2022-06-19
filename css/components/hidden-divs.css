@@ -1,0 +1,32 @@
+.about {
+    text-align: center;
+    margin: auto;
+    max-width: 1400px;
+}
+
+.nothing-found {
+    display: none;
+    color: white;
+    font-family: monospace, sans-serif;
+    padding: 30px;
+    font-size: 5rem;
+    text-transform: uppercase;
+}
+
+.no-imgs-found {
+    color: white;
+    font-family: monospace, sans-serif;
+    padding: 30px;
+    font-size: 5rem;
+    text-transform: uppercase;
+}
+
+.main-screen {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    cursor: pointer;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.6s;
+}

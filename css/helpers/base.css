@@ -1,0 +1,76 @@
+body {
+    background-color: #22252c;
+}
+button {
+    cursor: pointer;
+    background-color: transparent;
+}
+
+body.menu-open .main-screen {
+    pointer-events: auto;
+    opacity: 1;
+}
+canvas {
+    margin: 0 auto;
+    border-radius: 30px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    justify-items: center;
+    grid-auto-rows: 200px;
+    height: 100vh;
+    gap: 20px;
+}
+
+.grid img {
+    width: 100%;
+    max-width: 350px;
+    height: 100%;
+    object-fit: cover;
+    cursor: pointer;
+    border-radius: 13px;
+    box-shadow: -1px 0px 3px 0px rgba(0, 0, 0, 0.747);
+    transition: box-shadow 0.2s;
+}
+
+.btn {
+    /* Style for "About" */
+    width: 116px;
+    height: 40px;
+    color: #ffffff;
+    font-size: 21px;
+    font-weight: 500;
+    background-color: none;
+    border: none;
+}
+
+.active {
+    width: 116px;
+    height: 40px;
+    box-shadow: 0 3px 6px 1px rgba(0, 0, 0, 0.15);
+    border-radius: 20px;
+    background-color: #fefefe;
+    color: #37b34a;
+}
+
+.instagram,
+.linkedin {
+    font-size: 50px;
+}
+
+.instagram:hover,
+.linkedin:hover {
+    color: #0070c9;
+}
+
+.word {
+    color: white;
+    border: none;
+    font-family: monospace;
+    cursor: pointer;
+}
+.word:hover {
+    color: #58c93a;
+}

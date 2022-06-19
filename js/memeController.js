@@ -4,6 +4,7 @@
 let gCanvas
 let gCtx
 let gCurrTxt
+let gStartPos
 const gRefresh = {
     touchStart: 0,
     touchEnd: 0,
@@ -11,16 +12,17 @@ const gRefresh = {
 const MEME_KEY = 'memeDB'
 
 function onInit() {
-    
-    onSearchByKeywords()
     _initMeme()
-    document.querySelector('.no-imgs-found').hidden = true
+    onSearchByKeywords()
+    checkViewPort()
 }
 
 function _initMeme() {
     gCanvas = document.getElementById('my-canvas');
     gCtx = gCanvas.getContext('2d');
     renderImgs()
+    addMouseListeners()
+    document.querySelector('.no-imgs-found').hidden = true
 }
 
 function onMainPage() {
@@ -43,7 +45,7 @@ function onMainPage() {
     elSearchBar.style.display = 'inline-block'
     elMainPage.style.display = 'grid'
     renderImgs()
-    
+
 }
 
 function imgClicked() {
@@ -51,10 +53,15 @@ function imgClicked() {
     const gallery = document.querySelector('.gallery-container')
     const filter = document.querySelector('.line-txt')
     const mainPageElBtn = document.querySelector('.nav-main-page')
+    _resizeCanvas()
     mainPageElBtn.classList.toggle('active')
     filter.style.display = 'none'
     gallery.style.display = 'none'
     editor.style.display = 'flex'
+}
+
+function onToggleBtnActive(btnClass) {
+    btnClass.classList.toggle('active')
 }
 
 function renderImgs(imgs = gImgs, selector = 'gallery-section') {
@@ -79,52 +86,25 @@ function _renderLineTxtInput() {
     elInputTxt.value = lineTxt
 }
 
-function onToggleBtnActive(btnClass) {
-    btnClass.classList.toggle('active')
-}
-
-function _resizeCanvas() {
-    const elContainer = document.querySelector('.canvas-container')
-    gCanvas.width = elContainer.offsetWidth
-    gCanvas.height = elContainer.offsetHeight
-}
-
-function onClearCanvas() {
-    gCtx.clearRect(0, 0, gCanvas.width, gCanvas.height);
-}
-
 function _renderMeme() {
-    const img = getImg()
+    const meme = getMeme()
+    const imgId = meme.selectedImgId
     const elImg = new Image();
-    drawImg(elImg, img)
-    elImg.src = img.url
-    if (gMeme.lines.length) {
+    drawImg(elImg, imgId)
+    elImg.src = `meme-imgs/${imgId}.jpg`
+    if (meme.lines.length) {
         _renderLineTxtInput()
     }
-    _resizeCanvas()
 }
 
 function onStartMeme(imgId) {
-    setNewgMeme(imgId)
+    changeMemeImgId(imgId)
     imgClicked()
     _renderMeme()
 }
 
-function drawLines() {
-    let lines = gMeme.lines
-    lines.forEach((line, idx) => {
-        let fontStyle = `${line.size}px ${line.font}`
-        let align = `${line.align}`
-        drawText(line.txt, line.color, line.strokeColor, fontStyle, align, line.pos.x, line.pos.y)
-        if (idx === gMeme.selectedLineIdx) {
-            markLine(line)
-        }
-    })
-}
-
 //render canvas
 function drawText(txt, lineColor, lineStrokeColor, fontStyle, align, x, y) {
-    //fix txt
     gCtx.textAlign = align
     gCtx.lineWidth = '2'
     gCtx.strokeStyle = lineStrokeColor
@@ -141,7 +121,39 @@ function drawImg(elImg) {
     }
 }
 
-//btns on editor
+function drawLines() {
+    const meme = getMeme()
+    let lines = meme.lines
+    lines.forEach((line, idx) => {
+        let fontStyle = `${line.size}px ${line.font}`
+        let align = `${line.align}`
+        drawText(line.txt, line.color, line.strokeColor, fontStyle, align, line.pos.x, line.pos.y)
+        if (idx === meme.selectedLineIdx) {
+            markLine(line)
+        }
+    })
+}
+
+function _resizeCanvas() {
+    gCanvas.width = 476
+    gCanvas.height = 546
+}
+
+function onClearCanvas() {
+    gCtx.clearRect(0, 0, gCanvas.width, gCanvas.height);
+}
+
+
+//EDITOR FUNCTIONS - START
+function setLineTxt(txt) {
+    const meme = getMeme()
+    const line = meme.lines[meme.selectedLineIdx]
+    let fontSize = `${line.size}px Impact`
+    changeLineTxt(line, txt)
+    drawText(txt, line.color, line.strokeColor, fontSize, line.pos.x, line.pos.y)
+    _renderMeme()
+}
+
 function onAddTxt() {
     addTxt()
     _renderMeme()
@@ -152,7 +164,9 @@ function onDeleteTxt() {
     if (!line) {
         return
     }
-    _deleteTxt()
+    deleteTxt()
+    // txt, lineColor, lineStrokeColor, fontStyle, align, x, y
+    drawLines()
     _renderMeme()
 }
 
@@ -165,28 +179,6 @@ function onDecreaseFont() {
     decreaseFontSize()
     _renderMeme()
 }
-
-// function onChangeInput() {
-//     const elInput = document.querySelector('.input-txt')
-//     console.log(gMeme.lines[gMeme.selectedLineIdx]);
-//     // elInput.value = getCurrTxt()
-// }
-function getCurrTxt() {
-    if (!gMeme.lines.length) {
-        return ''
-    }
-    return gMeme.lines[gMeme.selectedLineIdx].txt
-}
-
-function _deleteTxt() {
-    const line = getSelectedLine()
-
-    line.txt = ''
-    drawText('')
-    _renderMeme()
-}
-
-//Align txt on canvas
 
 function onAlignLeft() {
     alignTxtLeft()
@@ -217,27 +209,24 @@ function updateFont(font) {
 
 function onChangeFontColor(color) {
     changeColor(color)
-}
-
-function changeColor(color) {
-    const line = getSelectedLine()
-    line.color = `${color.value}`
     drawText(line.txt, color, line.strokeColor, line.font, line.pos.x, line.pos.y)
     _renderMeme()
 }
 
+
+
 function onToggleLine() {
-    if (gMeme.lines.length < 2) {
+    const meme = getMeme()
+    if (meme.lines.length < 2) {
         return
     }
     toggleLine()
     _renderMeme()
-    // onChangeInput()
 }
 
 function markLine(line) {
     gCtx.globalCompositeOperation = "multiply"
-    gCtx.rect(0, line.pos.y + line.size / 8, gCanvas.width, -line.size)
+    gCtx.rect(0, line.pos.y + line.size / 8, gCanvas.width, - line.size)
     gCtx.strokeStyle = '#888'
     gCtx.stroke();
     gCtx.fillStyle = "#ddd"
@@ -257,6 +246,10 @@ function onShareMeme() {
     shareMeme()
 }
 
+//EDITOR FUNCTIONS - END
+
+//Filters
+
 function onFilterImgByTxt(txt) {
     const imgs = filterImgByTxt(txt)
     const errMsg = document.querySelector('.nothing-found')
@@ -269,9 +262,71 @@ function onFilterImgByTxt(txt) {
         errMsg.style.display = 'none'
         gallery.style.display = 'grid'
     }
-    
+
     renderImgs(imgs)
 }
+
+function onSearchByKeywords() {
+    const keywords = searchByKeywords()
+    renderKeyWords(keywords)
+}
+
+function renderKeyWords(words) {
+    console.log(words);
+    let strHTMLs = words.map((word) => {
+        if (word === 'all') {
+            return `<li><button data-trans="${word}" class="word" onclick="renderImgs()">${word}</button></li>`
+        }
+        return `<li><button data-trans="${word}" class="word" onclick="countWords(this)">${word}</button></li>`
+    })
+    const elSearchKeywords = document.querySelector('.search-by-keyword ul')
+    elSearchKeywords.innerHTML = strHTMLs.join('')
+}
+
+//DRAGGING
+function addMouseListeners() {
+    gCanvas.addEventListener('mousemove', onMove)
+    gCanvas.addEventListener('mousedown', onDown)
+    gCanvas.addEventListener('mouseup', onUp)
+}
+
+function onUp() {
+    setLineDrag(false)
+    document.body.style.cursor = 'grab'
+}
+function onDown(ev) {
+    const pos = getEvPos(ev)
+    checkPos(pos)
+    setLineDrag(true)
+    gStartPos = pos
+    document.body.style.cursor = 'grabbing'
+}
+
+//fix 
+function onMove(ev) {
+    const line = getSelectedLine()
+    if (line.isDrag) {
+        const pos = getEvPos(ev)
+        const dx = pos.x - gStartPos.x
+        const dy = pos.y - gStartPos.y
+        moveLine(line, dx, dy)
+        gStartPos = pos
+        _renderMeme()
+    }
+}
+
+function checkPos(pos) {
+    const meme = getMeme()
+    const lineIdx = meme.lines.findIndex(line => line.pos.y <= pos.y + 20 && line.pos.y >= pos.y);
+    if (lineIdx > -1 && meme.selectedLineIdx !== lineIdx) {
+        meme.selectedLineIdx = lineIdx
+        markLine(meme.lines[lineIdx])
+        drawLines()
+        _renderMeme()
+    }
+}
+
+//Translation
 
 function onSetLang(lang) {
     setLang(lang)
@@ -282,16 +337,23 @@ function onSetLang(lang) {
     _renderMeme()
 }
 
-
-function onSearchByKeywords() {
-    const keywords = searchByKeywords()
-    renderKeyWords(keywords)
+function checkViewPort() {
+    const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)
+    if(vw <= 680) {
+        resizeCanvasOnMobile()
+    }
 }
 
-function renderKeyWords(words) {
-    let strHTMLs = words.map((word) => {
-        return `<li><button data-trans="${word}" class="word" onclick="countWords(this)">${word}</button></li>`
-    })
-    const elSearchKeywords = document.querySelector('.search-by-keyword ul')
-    elSearchKeywords.innerHTML = strHTMLs.join('')
-}
+function resizeCanvasOnMobile () {
+    const elContainer = document.querySelector('#my-canvas')
+    console.log(elContainer);
+    const size = calculateAspectRatioFit(
+        250,
+        250,
+        250,
+        250
+    );
+    elContainer.width = size.width
+    elContainer.height = size.height
+};
+

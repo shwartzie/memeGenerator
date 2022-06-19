@@ -1,0 +1,215 @@
+.canvas-container {
+    box-shadow: 1px 5px 0 #383b42, inset 0 5px 0 #383b42;
+    border-radius: 30px;
+    width: 476px;
+    height: 546px;
+}
+
+.editor-section {
+    display: none;
+    justify-content: space-evenly;
+    align-items: center;
+    align-content: center;
+    max-width: 1285px;
+    margin: auto;
+}
+
+.editor-frame {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 525px;
+    height: 546px;
+    border-radius: 30px;
+    background-color: #383b42;
+}
+
+.input-txt {
+    margin-top: 1rem;
+    margin-bottom: 3rem;
+    text-align: center;
+    font-family: Poppins;
+    font-size: 25px;
+    font-weight: 500;
+    text-transform: uppercase;
+    width: 445px;
+    height: 57px;
+    border-radius: 28px;
+    background-color: #ebeef3;
+}
+
+/* BUTTONS */
+.functional-btns {
+    margin-bottom: 3rem;
+    gap: 1rem;
+}
+.extra-functional-btns-container {
+    background-color: #19a59f;
+    width: 440px;
+    height: 125px;
+    border-radius: 15px;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    column-gap: 2rem;
+    row-gap: 1rem;
+    padding: 10px;
+}
+.extra-functional-btns-container button {
+    background-color: white;
+    border: none;
+    border-radius: 15px;
+}
+
+.extra-functional-btns {
+    width: 56px;
+    height: 51px;
+    gap: 10px;
+}
+.line-btn {
+    width: 57px;
+    height: 53px;
+    box-shadow: 1px 3px 0 #048b97, inset 0 5px 0 rgba(255, 255, 255, 0.58);
+    border-radius: 10px;
+    background-color: #ebeef3;
+    background-image: linear-gradient(
+        -38deg,
+        #66c4dc 0%,
+        #40b1ce 50%,
+        #0c98bb 100%
+    );
+}
+.font-styles-selector {
+    border-radius: 15px;
+    text-align: center;
+    grid-column: -6 / -4;
+    font-weight: bold;
+    font-size: 22px;
+}
+
+.arrow-up {
+    position: relative;
+    left: -7px;
+    top: 10px;
+}
+.arrow-down {
+    position: relative;
+    left: 9px;
+    top: -24px;
+    transform: rotate(180deg);
+}
+
+.add-btn {
+    width: 58px;
+    height: 53px;
+    box-shadow: 1px 3px 0 #015d33, inset 0 5px 0 rgba(255, 255, 255, 0.58);
+    border-radius: 10px;
+    background-color: #ebeef3;
+    background-image: linear-gradient(-38deg, #42eb5c 0%, #37b34a 100%);
+}
+
+.delete-btn {
+    width: 58px;
+    height: 53px;
+    box-shadow: 1px 3px 0 #8c0606, inset 0 5px 0 rgba(255, 255, 255, 0.58);
+    border-radius: 10px;
+    background-color: #ebeef3;
+    background-image: linear-gradient(
+        -38deg,
+        #cf1d37 0%,
+        #cf1d37 1%,
+        #f05036 100%
+    );
+}
+.fill-color-label {
+    background-image: url("/fonts-btns/color.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: white;
+    border: none;
+    width: 58px;
+    height: 53px;
+    border-radius: 15px;
+}
+#fill-color {
+    visibility: hidden;
+}
+
+.share-download-btns {
+    display: flex;
+    margin-top: 1rem;
+    width: 440px;
+    height: 60px;
+    justify-content: space-between;
+}
+.share,
+.download {
+    border-radius: 15px;
+    width: 210px;
+    border: none;
+    color: white;
+    font-size: 18px;
+    display: block;
+    overflow: visible;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    white-space: nowrap;
+    box-sizing: border-box;
+    display: block;
+    text-align: center;
+    font-family: monospace;
+}
+.share {
+    background-image: linear-gradient(#42a1ec, #0070c9);
+}
+
+.share:disabled {
+    cursor: default;
+    opacity: 0.3;
+}
+
+.share:hover {
+    background-image: linear-gradient(#51a9ee, #147bcd);
+    border-color: #1482d0;
+    text-decoration: none;
+}
+
+.share:active {
+    background-image: linear-gradient(#3d94d9, #0067b9);
+    border-color: #006dbc;
+    outline: none;
+}
+
+.share:focus {
+    box-shadow: rgba(131, 192, 253, 0.5) 0 0 0 3px;
+    outline: none;
+}
+
+.download {
+    background-image: linear-gradient(rgb(217, 70, 217), rgb(155, 11, 155));
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.download:disabled {
+    cursor: default;
+    opacity: 0.3;
+}
+
+.download:hover {
+    background-image: linear-gradient(rgb(202, 66, 202), rgb(175, 16, 175));
+    text-decoration: none;
+}
+
+.download:active {
+    background-image: linear-gradient(rgb(202, 66, 202), rgb(175, 16, 175));
+    outline: none;
+}
+
+.download:focus {
+    box-shadow: rgba(183, 112, 253, 0.5) 0 0 0 3px;
+    outline: none;
+}

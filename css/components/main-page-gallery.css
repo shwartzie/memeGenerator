@@ -1,0 +1,25 @@
+.gallery-container {
+    display: flex;
+    max-width: 1243px;
+    flex-direction: column;
+    height: 32rem;
+    margin: auto;
+    background-color: #383b42;
+    border-radius: 10px;
+    padding: 2rem;
+    overflow-y: scroll;
+}
+.gallery-section {
+    display: grid;
+    margin: auto;
+    object-fit: cover;
+    max-width: 1243px;
+    width: 100%;
+    height: 100%;
+}
+.gallery-container::-webkit-scrollbar {
+    width: 10px;
+}
+.gallery-container::-webkit-scrollbar-thumb {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}

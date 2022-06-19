@@ -5,10 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/utils.css">
     <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/mq/mobile.css">
-    <link rel="stylesheet" href="css/mq/desktop.css">
     <title>Main Page</title>
 </head>
 
@@ -16,9 +13,7 @@
     <div class="main-screen" onclick="onClickScreen()"></div>
     <header>
         <section class="nav-container">
-            <div class="btn-logo">
-                LOGO
-            </div>
+            <img class="logo" src="Images/LOGO.png">
             <nav class="nav-bar flex">
                 <select class="change-languages" onchange="onSetLang(this.value)">
                     <option value="en">English</option>
@@ -47,13 +42,12 @@
             <h3 style="color:rgb(101, 222, 182)">Created By &copy; Roni Shwarzman</h3>
         </div>
         <div class="gallery-container">
-
             <div class="no-imgs-found">no images have been saved yet, why not go ahead and try aye? 😉</div>
             <div class="search-functions">
-                <label for="line-txt"  class="magnifying-glass"></label>
-                <input type="text" data-trans="search" id="line-txt" class="line-txt" name="filter-txt"
-                    onchange="onFilterImgByTxt(this.value)" placeholder="Search">
-
+                <div class="line-txt-wrapper">
+                    <input type="text" data-trans="search" id="line-txt" class="line-txt" name="filter-txt"
+                        onchange="onFilterImgByTxt(this.value)" placeholder="Press Enter As You Search">
+                </div>
                 <div class="search-by-keyword">
                     <ul class="flex" style="gap: 1rem;">
 
@@ -64,8 +58,6 @@
             </div>
             <div class="nothing-found"> Nothing Found Try Writing Something Else 😓</div>
             <section class="gallery-section grid">
-                <div class="gallery-imgs">
-                </div>
             </section>
             <div class="saved-memes-container grid">
 

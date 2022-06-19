@@ -39,7 +39,7 @@
     margin: auto;
 }
 .flex.gap {
-    gap:1rem;
+    gap: 1rem;
 }
 .grid {
     display: grid;
