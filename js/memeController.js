@@ -302,17 +302,17 @@ function onDown(ev) {
 }
 
 //fix 
-function onMove(ev) {
-    const line = getSelectedLine()
-    if (line.isDrag) {
-        const pos = getEvPos(ev)
-        const dx = pos.x - gStartPos.x
-        const dy = pos.y - gStartPos.y
-        moveLine(line, dx, dy)
-        gStartPos = pos
-        _renderMeme()
-    }
-}
+// function onMove(ev) {
+//     const line = getSelectedLine()
+//     if (line.isDrag) {
+//         const pos = getEvPos(ev)
+//         const dx = pos.x - gStartPos.x
+//         const dy = pos.y - gStartPos.y
+//         moveLine(line, dx, dy)
+//         gStartPos = pos
+//         _renderMeme()
+//     }
+// }
 
 function checkPos(pos) {
     const meme = getMeme()
